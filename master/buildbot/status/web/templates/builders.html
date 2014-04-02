@@ -19,12 +19,18 @@
 <h3>Building: {{ num_building }}, Online: {{ num_online }}</h3>
 </br>
 <table>
+  <tr>
+  <th>Name</th>
+  <th>Last build</th>
+  <th>Status</th>
+  <th>Description</th>
+</tr>
   {% for c, bds in builders %}
   <tr>
     {%- if c -%}
       <th colspan="4">{{ c }}</th>
     {% else %}
-      <th colspan="4">Unknown</th>
+      <th colspan="4"></th>
     {% endif %}
   </tr>
   {% for b in bds %}
