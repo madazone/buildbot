@@ -30,19 +30,19 @@
   {% for b in bds %}
   <tr>
     <td class="box"><a href="{{ b.link }}"><h2>{{ b.name|e }}</h2></a></td>
-      {% if b.build_url %}
-        <td class="LastBuild box {{ b.build_css_class }}">
-            <a href="{{ b.build_url }}">{{ b.build_label }}</a>
-            <br/>{{ b.build_text }}
-        </td>
-      {% else %}
-        <td class="LastBuild box">no build</td>
-      {% endif %}  
-      <td class="box"><h4>{{ b.description|e }}</h4></td>
-      {{ box(**b.current_box) }}  
-      </tr>
-      {% endfor %}
-    {% endfor %}
+    {% if b.build_url %}
+    <td class="LastBuild box {{ b.build_css_class }}">
+      <a href="{{ b.build_url }}">{{ b.build_label }}</a>
+      <br/>{{ b.build_text }}
+    </td>
+    {% else %}
+    <td class="LastBuild box">no build</td>
+    {% endif %}
+    {{ box(**b.current_box) }}
+    <td class="box"><h4>{{ b.description|e }}</h4></td>  
+  </tr>
+  {% endfor %}
+  {% endfor %}
   </table>
   </br>
 
