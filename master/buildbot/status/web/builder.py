@@ -40,6 +40,7 @@ from buildbot.status.web.build import StatusResourceBuild
 from twisted.internet import defer
 from twisted.python import log
 from twisted.web import html
+from itertools import groupby
 
 
 class ForceAction(ActionResource):
@@ -653,6 +654,13 @@ class BuildersResource(HtmlResource):
                 online += 1
             elif builder_status != "offline":
                 online += 1
+
+            bld['category'] = builder.getCategory()
+            bld['description'] = builder.getDescription()
+            bld['num_current_builds'] = builder.getCurrentBuilds()
+        
+
+        cxt['builders'] = [ (k, list(v)) for k, v in groupby(bs, lambda x: x['category']) ]
 
         cxt['authz'] = self.getAuthz(req)
         cxt['num_building'] = building
